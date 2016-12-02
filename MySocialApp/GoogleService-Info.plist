@@ -34,5 +34,7 @@
 	<string>1:909670833288:ios:af8fcf0b2493f601</string>
 	<key>DATABASE_URL</key>
 	<string>https://mysocialapp-f1bd8.firebaseio.com</string>
+    <key>API_KEY</key>
+    <string>AIzaSyAtWAG23QWFwpzgN6TF7qR-UZvUj2nCTic</string>
 </dict>
 </plist>
