@@ -20,6 +20,7 @@
 		9C4794F41DF1B39500004CC5 /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4794F31DF1B39500004CC5 /* RoundBtn.swift */; };
 		9C4794F61DF1B5BD00004CC5 /* FancyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4794F51DF1B5BD00004CC5 /* FancyTextField.swift */; };
 		9C4794F81DF1B83000004CC5 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4794F71DF1B83000004CC5 /* FancyButton.swift */; };
+		9C61F47E1DF23B790016E530 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F47D1DF23B790016E530 /* FeedViewController.swift */; };
 		A363F1FE2875AABF85217CC9 /* Pods_MySocialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D837EF14F6985C2F42EB339 /* Pods_MySocialApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		9C4794F51DF1B5BD00004CC5 /* FancyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyTextField.swift; sourceTree = "<group>"; };
 		9C4794F71DF1B83000004CC5 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		9C4794F91DF1CBFF00004CC5 /* MySocialApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySocialApp.entitlements; sourceTree = "<group>"; };
+		9C61F47D1DF23B790016E530 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		AACAF97C012623BD42496255 /* Pods_MySocialAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySocialAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4794CB1DF0D26000004CC5 /* SignInViewController.swift */,
+				9C61F47D1DF23B790016E530 /* FeedViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				9C4794F81DF1B83000004CC5 /* FancyButton.swift in Sources */,
 				9C4794F61DF1B5BD00004CC5 /* FancyTextField.swift in Sources */,
 				9C4794EF1DF1AF1300004CC5 /* FancyView.swift in Sources */,
+				9C61F47E1DF23B790016E530 /* FeedViewController.swift in Sources */,
 				9C4794F21DF1AFBF00004CC5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ target 'MySocialApp' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'SwiftKeychainWrapper'
 
 
   target 'MySocialAppTests' do
