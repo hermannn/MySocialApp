@@ -192,6 +192,9 @@
                                                     <constraint firstAttribute="width" constant="50" id="ygP-39-R6K"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
+                                                <connections>
+                                                    <action selector="PostBtnPressed:" destination="JO0-Jt-TBQ" eventType="touchUpInside" id="adw-KS-FD5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -324,6 +327,7 @@
                     </view>
                     <connections>
                         <outlet property="AddImage" destination="Rj3-8n-Kz4" id="HZx-91-keA"/>
+                        <outlet property="captionTxtField" destination="Xn9-eG-Ki8" id="3xK-OB-1Zz"/>
                         <outlet property="mytableview" destination="Mkr-HK-e3s" id="cYC-8B-fou"/>
                     </connections>
                 </viewController>
