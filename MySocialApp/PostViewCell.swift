@@ -20,5 +20,10 @@ class PostViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configCell (post: Post) {
+        self.caption.text = post.caption
+        self.nbLikes.text = "\(post.nbLikes)"
+    }
 
 }
