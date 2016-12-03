@@ -1,5 +1,5 @@
 //
-//  FancyImageView.swift
+//  CircleImageView.swift
 //  MySocialApp
 //
 //  Created by Hermann Dorio on 03/12/2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FancyImageView: UIImageView {
+class CircleImageView: UIImageView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +18,11 @@ class FancyImageView: UIImageView {
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1, height: 1)
 
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = self.frame.width / 2
     }
 
 }
