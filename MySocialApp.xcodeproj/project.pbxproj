@@ -21,7 +21,7 @@
 		9C4794F61DF1B5BD00004CC5 /* FancyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4794F51DF1B5BD00004CC5 /* FancyTextField.swift */; };
 		9C4794F81DF1B83000004CC5 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4794F71DF1B83000004CC5 /* FancyButton.swift */; };
 		9C61F47E1DF23B790016E530 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F47D1DF23B790016E530 /* FeedViewController.swift */; };
-		9C61F4801DF2DB710016E530 /* FancyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F47F1DF2DB710016E530 /* FancyImageView.swift */; };
+		9C61F4801DF2DB710016E530 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F47F1DF2DB710016E530 /* CircleImageView.swift */; };
 		9C61F4821DF2E74A0016E530 /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4811DF2E74A0016E530 /* PostViewCell.swift */; };
 		9C61F4851DF30EA40016E530 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4841DF30EA40016E530 /* DataService.swift */; };
 		9C61F4871DF350180016E530 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4861DF350180016E530 /* Post.swift */; };
@@ -62,7 +62,7 @@
 		9C4794F71DF1B83000004CC5 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		9C4794F91DF1CBFF00004CC5 /* MySocialApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySocialApp.entitlements; sourceTree = "<group>"; };
 		9C61F47D1DF23B790016E530 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		9C61F47F1DF2DB710016E530 /* FancyImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyImageView.swift; sourceTree = "<group>"; };
+		9C61F47F1DF2DB710016E530 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		9C61F4811DF2E74A0016E530 /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
 		9C61F4841DF30EA40016E530 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		9C61F4861DF350180016E530 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 				9C4794F31DF1B39500004CC5 /* RoundBtn.swift */,
 				9C4794F51DF1B5BD00004CC5 /* FancyTextField.swift */,
 				9C4794F71DF1B83000004CC5 /* FancyButton.swift */,
-				9C61F47F1DF2DB710016E530 /* FancyImageView.swift */,
+				9C61F47F1DF2DB710016E530 /* CircleImageView.swift */,
 				9C61F4811DF2E74A0016E530 /* PostViewCell.swift */,
 			);
 			name = View;
@@ -414,7 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4794CC1DF0D26000004CC5 /* SignInViewController.swift in Sources */,
-				9C61F4801DF2DB710016E530 /* FancyImageView.swift in Sources */,
+				9C61F4801DF2DB710016E530 /* CircleImageView.swift in Sources */,
 				9C4794F41DF1B39500004CC5 /* RoundBtn.swift in Sources */,
 				9C61F4871DF350180016E530 /* Post.swift in Sources */,
 				9C4794CA1DF0D26000004CC5 /* AppDelegate.swift in Sources */,

@@ -10,15 +10,20 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var AddImage: CircleImageView!
     @IBOutlet weak var mytableview: UITableView!
     var  posts = [Post]()
+    var imagepicker:UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mytableview.delegate = self
         self.mytableview.dataSource = self
+        self.imagepicker = UIImagePickerController()
+        self.imagepicker.allowsEditing = true // choose how to croped the image selected 
+        self.imagepicker.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -53,6 +58,25 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         return PostViewCell()
     }
     
+    //picker image function
+    
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
+           self.AddImage.image = image
+        }
+        else{
+            print("Invalid image selected")
+        }
+         self.imagepicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    //IBAction
+    @IBAction func ImagePressed(_ sender: AnyObject) {
+        self.present(self.imagepicker, animated: true, completion: nil)
+    }
 
     @IBAction func SignOutTapped(_ sender: AnyObject) {
         let keychainresult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
