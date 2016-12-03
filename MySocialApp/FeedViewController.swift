@@ -32,7 +32,8 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         return self.mytableview.dequeueReusableCell(withIdentifier: "PostViewCell", for: indexPath)
     }
     
-    @IBAction func SignOutPressed(_ sender: UIButton) {
+
+    @IBAction func SignOutTapped(_ sender: AnyObject) {
         let keychainresult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         if keychainresult == true {
             do{
@@ -44,6 +45,6 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         }else{
             print("couldn't remove uid save in keychain")
         }
-    }
 
+    }
 }
