@@ -62,8 +62,9 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 cell.configCell(post: post)
             }
                return cell
+        }else{
+            return PostViewCell()
         }
-        return PostViewCell()
     }
     
     //picker image function
