@@ -120,6 +120,7 @@
                         <outlet property="emailTxtfield" destination="fuj-V2-aZS" id="aww-U1-KOx"/>
                         <outlet property="passwordTxtfield" destination="xbU-dn-SC8" id="UWU-kH-cP7"/>
                         <segue destination="JO0-Jt-TBQ" kind="show" identifier="goto-feed" id="iGd-1h-WgS"/>
+                        <segue destination="Ybe-wT-Wfb" kind="show" identifier="goto-profil" id="YUQ-44-g0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -344,7 +345,93 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="900" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1345" y="131"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2Nz-r9-agA">
+            <objects>
+                <viewController id="Ybe-wT-Wfb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7AQ-jk-L16"/>
+                        <viewControllerLayoutGuide type="bottom" id="X9P-S9-KEp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dgM-3E-VZI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-Ek-d5J">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nr-3I-B2k">
+                                        <frame key="frameInset" minX="142" minY="22" width="91" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="K7L-Dd-4U7"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvS-RK-K7X">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-3s-3bV">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLz-jK-bkI">
+                                        <frame key="frameInset" minX="141" minY="165" width="92" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profil-picture" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-xd-U0E" customClass="CircleImageView" customModule="MySocialApp" customModuleProvider="target">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="UTa-7P-MgP"/>
+                                            <constraint firstAttribute="height" constant="100" id="Uvs-aZ-CPR"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0078431372549019607" green="0.46666666666666667" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Zyo-xd-U0E" firstAttribute="centerX" secondItem="IZz-3s-3bV" secondAttribute="centerX" id="QuQ-7s-0Fc"/>
+                                    <constraint firstItem="Zyo-xd-U0E" firstAttribute="centerY" secondItem="IZz-3s-3bV" secondAttribute="centerY" id="b8j-1Y-eOy"/>
+                                    <constraint firstAttribute="height" constant="200" id="deO-v0-WpT"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlR-96-GF3">
+                                <color key="backgroundColor" red="0.0039215686274509803" green="0.3411764705882353" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="skz-ZF-Y2X"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VlR-96-GF3" firstAttribute="leading" secondItem="dgM-3E-VZI" secondAttribute="leading" id="4vB-bg-HyQ"/>
+                            <constraint firstItem="X9P-S9-KEp" firstAttribute="top" secondItem="DvS-RK-K7X" secondAttribute="bottom" id="FMX-ff-T7d"/>
+                            <constraint firstItem="DvS-RK-K7X" firstAttribute="top" secondItem="VlR-96-GF3" secondAttribute="bottom" constant="-1" id="OJc-Dk-OaH"/>
+                            <constraint firstAttribute="trailing" secondItem="DvS-RK-K7X" secondAttribute="trailing" id="R5s-DC-EmQ"/>
+                            <constraint firstItem="IZz-3s-3bV" firstAttribute="leading" secondItem="dgM-3E-VZI" secondAttribute="leading" id="SmD-dJ-IAb"/>
+                            <constraint firstItem="ahu-Ek-d5J" firstAttribute="leading" secondItem="dgM-3E-VZI" secondAttribute="leading" id="WMk-7I-S9V"/>
+                            <constraint firstItem="VlR-96-GF3" firstAttribute="top" secondItem="IZz-3s-3bV" secondAttribute="bottom" id="YAP-yI-YrV"/>
+                            <constraint firstItem="ahu-Ek-d5J" firstAttribute="top" secondItem="dgM-3E-VZI" secondAttribute="top" id="Z6V-Du-RQr"/>
+                            <constraint firstAttribute="trailing" secondItem="ahu-Ek-d5J" secondAttribute="trailing" id="aEK-yb-168"/>
+                            <constraint firstItem="DvS-RK-K7X" firstAttribute="leading" secondItem="dgM-3E-VZI" secondAttribute="leading" id="afX-wU-atg"/>
+                            <constraint firstAttribute="trailing" secondItem="VlR-96-GF3" secondAttribute="trailing" id="bOD-hh-deQ"/>
+                            <constraint firstAttribute="trailing" secondItem="IZz-3s-3bV" secondAttribute="trailing" id="gUY-nz-Wky"/>
+                            <constraint firstItem="IZz-3s-3bV" firstAttribute="top" secondItem="ahu-Ek-d5J" secondAttribute="bottom" constant="-1" id="t1l-Dc-IMM"/>
+                            <constraint firstItem="VlR-96-GF3" firstAttribute="top" secondItem="IZz-3s-3bV" secondAttribute="bottom" id="urx-63-MrO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="JO0-Jt-TBQ" kind="show" id="ebh-wO-eIU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3CI-mB-8bb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517.60000000000002" y="914.392803598201"/>
         </scene>
     </scenes>
     <resources>
@@ -356,4 +443,7 @@
         <image name="profil-picture" width="225" height="225"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iGd-1h-WgS"/>
+    </inferredMetricsTieBreakers>
 </document>

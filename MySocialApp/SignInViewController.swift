@@ -16,6 +16,8 @@ class SignInViewController: UIViewController {
 
     @IBOutlet weak var passwordTxtfield: FancyTextField!
     @IBOutlet weak var emailTxtfield: FancyTextField!
+    var validateAction:UIAlertAction?
+    var usernameData:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +97,40 @@ class SignInViewController: UIViewController {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainresult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("Data saved to keychain : \(keychainresult)")
-        performSegue(withIdentifier: "goto-feed", sender: nil)
+        self.PutUsername()
+        //performSegue(withIdentifier: "goto-feed", sender: nil)
         
+    }
+    
+    func textEdited (sender: UITextField){
+        let nbspace = sender.text?.characters.filter({ $0 == " "})
+        if let space = nbspace?.count {
+            if !(space > 0), !((sender.text?.isEmpty)!) {
+                self.validateAction?.isEnabled = true
+            }else{
+                self.validateAction?.isEnabled = false
+            }
+        }
+    }
+    
+    
+    func PutUsername (){
+        var username:String?
+        let alertcontroller = UIAlertController(title: "One more thing", message: "Please enter an username, it must not contain any space", preferredStyle: .alert)
+        alertcontroller.addTextField { (mytextfield) in
+            mytextfield.addTarget(self, action: #selector(self.textEdited), for: .editingChanged)
+        }
+        self.validateAction = UIAlertAction(title: "Validate", style: .default, handler: { (alertaction) in
+             username = alertcontroller.textFields?.first?.text
+            if let usernamefill = username {
+                self.usernameData = usernamefill
+                DataService.ds.REF_USER_CURRENT.child("username").setValue(usernamefill)
+                self.performSegue(withIdentifier: "goto-feed", sender: nil)
+            }
+        })
+        self.validateAction?.isEnabled = false
+        alertcontroller.addAction(self.validateAction!)
+        self.present(alertcontroller, animated: true, completion: nil)
     }
 }
 
