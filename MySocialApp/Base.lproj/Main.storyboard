@@ -120,7 +120,6 @@
                         <outlet property="emailTxtfield" destination="fuj-V2-aZS" id="aww-U1-KOx"/>
                         <outlet property="passwordTxtfield" destination="xbU-dn-SC8" id="UWU-kH-cP7"/>
                         <segue destination="JO0-Jt-TBQ" kind="show" identifier="goto-feed" id="iGd-1h-WgS"/>
-                        <segue destination="Ybe-wT-Wfb" kind="show" identifier="goto-profil" id="YUQ-44-g0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -156,14 +155,26 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="Wnn-ri-LKa">
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="UXs-I6-DPd"/>
+                                            <constraint firstAttribute="height" constant="40" id="jqP-oi-3fp"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="5yK-Ha-L1w" appends="YES" id="Rad-bt-WBO"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="BUh-W5-yuW" firstAttribute="centerY" secondItem="JvU-pI-l5T" secondAttribute="centerY" id="GKS-Ht-3Ic"/>
                                     <constraint firstAttribute="height" constant="65" id="L5B-Tm-Dyn"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wnn-ri-LKa" secondAttribute="bottom" constant="8" id="M5K-8g-Hkd"/>
                                     <constraint firstItem="BUh-W5-yuW" firstAttribute="centerX" secondItem="iFw-3G-Ytr" secondAttribute="centerX" id="NZN-VS-eLw"/>
                                     <constraint firstItem="JvU-pI-l5T" firstAttribute="leading" secondItem="iFw-3G-Ytr" secondAttribute="leading" constant="8" id="VTZ-oG-oy2"/>
                                     <constraint firstAttribute="bottom" secondItem="JvU-pI-l5T" secondAttribute="bottom" constant="8" id="lAW-Ew-T54"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wnn-ri-LKa" secondAttribute="trailing" constant="8" id="yIo-7H-cIk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rb5-k5-9cD" customClass="FancyView" customModule="MySocialApp" customModuleProvider="target">
@@ -331,6 +342,7 @@
                         <outlet property="AddImage" destination="Rj3-8n-Kz4" id="HZx-91-keA"/>
                         <outlet property="captionTxtField" destination="Xn9-eG-Ki8" id="3xK-OB-1Zz"/>
                         <outlet property="mytableview" destination="Mkr-HK-e3s" id="cYC-8B-fou"/>
+                        <segue destination="Ybe-wT-Wfb" kind="show" identifier="feed-to-profil" id="Yag-qt-e4N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9WR-Cb-NaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -344,13 +356,18 @@
                         <action selector="ImagePressed:" destination="JO0-Jt-TBQ" id="Qax-Hl-GeW"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="5yK-Ha-L1w">
+                    <connections>
+                        <action selector="ProfilTapped:" destination="JO0-Jt-TBQ" id="Fya-4U-AAJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1345" y="131"/>
         </scene>
-        <!--View Controller-->
+        <!--Profil View Controller-->
         <scene sceneID="2Nz-r9-agA">
             <objects>
-                <viewController id="Ybe-wT-Wfb" sceneMemberID="viewController">
+                <viewController id="Ybe-wT-Wfb" customClass="ProfilViewController" customModule="MySocialApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7AQ-jk-L16"/>
                         <viewControllerLayoutGuide type="bottom" id="X9P-S9-KEp"/>
@@ -368,6 +385,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3u-ex-HtY">
+                                        <frame key="frameInset" minX="8" minY="17" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="BackPressed:" destination="Ybe-wT-Wfb" eventType="touchUpInside" id="CXW-lg-EYd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.01176470588" green="0.66274509800000003" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -386,11 +414,15 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profil-picture" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-xd-U0E" customClass="CircleImageView" customModule="MySocialApp" customModuleProvider="target">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-xd-U0E" customClass="CircleImageView" customModule="MySocialApp" customModuleProvider="target">
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="UTa-7P-MgP"/>
                                             <constraint firstAttribute="height" constant="100" id="Uvs-aZ-CPR"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="K6c-vF-lUL" appends="YES" id="SDC-AD-cia"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0078431372549019607" green="0.46666666666666667" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
@@ -426,15 +458,23 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="myusername" destination="aLz-jK-bkI" id="oJR-yQ-mZY"/>
+                        <outlet property="profilImage" destination="Zyo-xd-U0E" id="Jpv-gV-xOj"/>
                         <segue destination="JO0-Jt-TBQ" kind="show" id="ebh-wO-eIU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CI-mB-8bb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="K6c-vF-lUL">
+                    <connections>
+                        <action selector="ImagePressed:" destination="Ybe-wT-Wfb" id="gJf-wP-Yj8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="517.60000000000002" y="914.392803598201"/>
+            <point key="canvasLocation" x="826" y="877"/>
         </scene>
     </scenes>
     <resources>
+        <image name="User" width="25" height="25"/>
         <image name="add-image" width="88" height="88"/>
         <image name="add-post" width="88" height="88"/>
         <image name="empty-heart" width="70" height="70"/>
@@ -444,6 +484,6 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iGd-1h-WgS"/>
+        <segue reference="ebh-wO-eIU"/>
     </inferredMetricsTieBreakers>
 </document>

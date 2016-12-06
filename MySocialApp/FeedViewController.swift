@@ -134,6 +134,11 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.mytableview.reloadData()
     }
     
+    
+    @IBAction func ProfilTapped(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "feed-to-profil", sender: nil)
+    }
+    
     @IBAction func SignOutTapped(_ sender: AnyObject) {
         let keychainresult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         if keychainresult == true {

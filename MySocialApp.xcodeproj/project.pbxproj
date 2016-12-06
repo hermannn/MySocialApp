@@ -25,6 +25,7 @@
 		9C61F4821DF2E74A0016E530 /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4811DF2E74A0016E530 /* PostViewCell.swift */; };
 		9C61F4851DF30EA40016E530 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4841DF30EA40016E530 /* DataService.swift */; };
 		9C61F4871DF350180016E530 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61F4861DF350180016E530 /* Post.swift */; };
+		9CF62F241DF71E9D004204D1 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF62F231DF71E9D004204D1 /* ProfilViewController.swift */; };
 		A363F1FE2875AABF85217CC9 /* Pods_MySocialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D837EF14F6985C2F42EB339 /* Pods_MySocialApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		9C61F4811DF2E74A0016E530 /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
 		9C61F4841DF30EA40016E530 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		9C61F4861DF350180016E530 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		9CF62F231DF71E9D004204D1 /* ProfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		AACAF97C012623BD42496255 /* Pods_MySocialAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySocialAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 			children = (
 				9C4794CB1DF0D26000004CC5 /* SignInViewController.swift */,
 				9C61F47D1DF23B790016E530 /* FeedViewController.swift */,
+				9CF62F231DF71E9D004204D1 /* ProfilViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4794CC1DF0D26000004CC5 /* SignInViewController.swift in Sources */,
+				9CF62F241DF71E9D004204D1 /* ProfilViewController.swift in Sources */,
 				9C61F4801DF2DB710016E530 /* CircleImageView.swift in Sources */,
 				9C4794F41DF1B39500004CC5 /* RoundBtn.swift in Sources */,
 				9C61F4871DF350180016E530 /* Post.swift in Sources */,
