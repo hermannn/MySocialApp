@@ -29,6 +29,7 @@ class PostViewCell: UITableViewCell {
     }
     
     func likeTapped(sender: UITapGestureRecognizer){
+        print("like Tapped")
         self.likeref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeImage.image = UIImage(named: "filled-heart")
@@ -44,14 +45,21 @@ class PostViewCell: UITableViewCell {
 
     }
     
-    func configCell (post: Post, img: UIImage? = nil) {
+    func configCell (post: Post, imgpost: UIImage? = nil, imguser: UIImage? = nil) {
         self.post = post
         self.likeref = DataService.ds.REF_USER_CURRENT.child("likes").child(post.idKey)
+        
         self.caption.text = post.caption
         self.nbLikes.text = "\(post.nbLikes)"
+        self.username.text = post.username
+        if imguser != nil {
+                self.profilImage.image = imguser
+        }else{
+            dlUserProfilImg()
+        }
         
-        if img != nil {
-            self.postImage.image = img
+        if imgpost != nil {
+            self.postImage.image = imgpost
         }else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageUrl)
                 ref.data(withMaxSize: 1024 * 1024 * 2, completion: { (data, error) in
@@ -76,6 +84,22 @@ class PostViewCell: UITableViewCell {
                 }
             })
         }
+    
+    func dlUserProfilImg (){
+        let ref = FIRStorage.storage().reference(forURL: post.imgUser)
+        ref.data(withMaxSize: 1024 * 1024 * 2, completion: { (data, error) in
+            if error != nil {
+                print("Unable to dl image profil post to firebase")
+            }else{
+                if let imageData = data {
+                    if let img = UIImage(data: imageData){
+                        self.profilImage.image = img
+                        FeedViewController.imageCache.setObject(img, forKey: self.post.imgUser as NSString)
+                    }
+                }
+            }
+        })
+    }
         
 }
 

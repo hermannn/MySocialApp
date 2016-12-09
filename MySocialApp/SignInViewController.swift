@@ -12,15 +12,18 @@ import FBSDKCoreKit
 import Firebase
 import SwiftKeychainWrapper
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var passwordTxtfield: FancyTextField!
     @IBOutlet weak var emailTxtfield: FancyTextField!
     var validateAction:UIAlertAction?
     var usernameData:String?
+    var isUserExist = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.passwordTxtfield.delegate = self
+        self.emailTxtfield.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -34,7 +37,15 @@ class SignInViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     @IBAction func facebookBtnPressed(_ sender: UIButton) {
         let fbLogin = FBSDKLoginManager()
@@ -60,7 +71,7 @@ class SignInViewController: UIViewController {
                 print("Succesfully authenticate with firebase")
                 if let user = user {
                  let userData = ["provider": credential.provider]
-                 self.completeSignin(id: user.uid, userData: userData)
+                    self.completeSignin(user: user, userData: userData, credential: credential)
                 }
             }
         })
@@ -72,9 +83,10 @@ class SignInViewController: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
                     print("Email user authenticate with Firebase")
+                    self.isUserExist = true
                     if let user = user {
                         let userData = ["provider": user.providerID]
-                        self.completeSignin(id: user.uid, userData: userData)
+                        self.completeSignin(user: user, userData: userData)
                     }
                 }else{
                     FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -84,7 +96,7 @@ class SignInViewController: UIViewController {
                             print("Successfully authenticate with Firebase")
                             if let user = user {
                                 let userData = ["provider": user.providerID]
-                                self.completeSignin(id: user.uid, userData: userData)
+                                self.completeSignin(user: user, userData: userData)
                             }
                         }
                     })
@@ -93,13 +105,28 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func completeSignin(id : String, userData: Dictionary<String, String>) {
-        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
-        let keychainresult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
-        print("Data saved to keychain : \(keychainresult)")
-        self.PutUsername()
-        //performSegue(withIdentifier: "goto-feed", sender: nil)
+    func completeSignin(user : FIRUser, userData: Dictionary<String, String>, credential: FIRAuthCredential? = nil) {
         
+        DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
+        let keychainresult = KeychainWrapper.standard.set(user.uid, forKey: KEY_UID)
+        print("Data saved to keychain : \(keychainresult)")
+        if credential != nil {
+            user.reauthenticate(with: credential!, completion: { (error) in
+                if error != nil {
+                    self.PutUsername()
+                }else{
+                    print("user reauthenticate")
+                    self.performSegue(withIdentifier: "goto-feed", sender: nil)
+                }
+            })
+        }
+        else{
+            if isUserExist == false{
+                self.PutUsername()
+            }else{
+                performSegue(withIdentifier: "goto-feed", sender: nil)
+            }
+        }
     }
     
     func textEdited (sender: UITextField){

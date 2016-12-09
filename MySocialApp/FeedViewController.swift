@@ -28,8 +28,12 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.imagepicker.allowsEditing = true // choose how to croped the image selected 
         self.imagepicker.delegate = self
         
+        print("view did load feed")
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                if self.posts.count > 0 {
+                    self.posts.removeAll()
+                }
                 for snap in snapshots {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
@@ -39,6 +43,9 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
                     }
                 }
             }
+            self.posts.sort(by: { (post, post2) -> Bool in
+                return post.datePublished.compare(post2.datePublished) == .orderedDescending
+            })
             self.mytableview.reloadData()
         })
     }
@@ -55,12 +62,27 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         
         let post = posts[indexPath.row]
         if let cell =  self.mytableview.dequeueReusableCell(withIdentifier: "PostViewCell") as? PostViewCell {
+            var imgpost: UIImage?
+            var imguser: UIImage?
             
-            if let img = FeedViewController.imageCache.object(forKey: post.imageUrl as NSString){
-                cell.configCell(post: post, img: img)
-            }else {
+            imgpost = FeedViewController.imageCache.object(forKey: post.imageUrl as NSString)
+            imguser = FeedViewController.imageCache.object(forKey: post.imgUser as NSString)
+            
+            if let imgpost = imgpost , let imguser = imguser {
+                print("img user img post")
+                cell.configCell(post: post, imgpost: imgpost, imguser: imguser)
+            }else if let imgpost = imgpost, imguser == nil {
+                 print("img user nil")
+                cell.configCell(post: post, imgpost: imgpost)
+            }else if let imguser = imguser, imgpost == nil {
+                 print("img post nil")
+                cell.configCell(post: post, imguser: imguser)
+            }
+            else {
+                 print("img both nil")
                 cell.configCell(post: post)
             }
+                print("--------")
                return cell
         }else{
             return PostViewCell()
@@ -119,19 +141,46 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func postToFirebase (imageUrl: String){
-        let post: Dictionary<String, AnyObject> = [
-            "caption" : captionTxtField.text! as AnyObject,
-            "imageUrl" : imageUrl as AnyObject,
-            "likes" : 0 as AnyObject
-        ]
-        
-        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
-        firebasePost.setValue(post)
-        
-        self.captionTxtField.text = ""
-        self.imageSelected = false
-        self.AddImage.image = UIImage(named: "add-image")
-        self.mytableview.reloadData()
+        var myusername:String?
+        var profilimage:String?
+        DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+            print("snapshot == \(snapshot)")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy MMM EEEE HH:mm"
+            let date = Date()
+            let mdate = dateFormatter.string(from: date)
+            if let userData = snapshot.value as? Dictionary<String, AnyObject> {
+                if let username = userData["username"] as? String {
+                    myusername = username
+                }
+                if let profilimg = userData["profil-img"] as? String {
+                   profilimage = profilimg
+                }
+                let post: Dictionary<String, AnyObject> = [
+                    "caption" : self.captionTxtField.text! as AnyObject,
+                    "imageUrl" : imageUrl as AnyObject,
+                    "likes" : 0 as AnyObject,
+                    "username" :  myusername! as AnyObject,
+                    "date-published": mdate as AnyObject,
+                    "user-img" : profilimage! as AnyObject
+                ]
+                
+                let uuistring = NSUUID().uuidString
+                let firebasePost = DataService.ds.REF_POSTS.child(uuistring)
+                firebasePost.setValue(post)
+                let userpost : Dictionary<String, AnyObject> = ["id": uuistring as AnyObject]
+                DataService.ds.REF_USER_CURRENT.child("posts").child(uuistring).setValue(userpost)
+                
+                
+                self.captionTxtField.text = ""
+                self.imageSelected = false
+                self.AddImage.image = UIImage(named: "add-image")
+                if self.posts.count > 0 {
+                    self.posts.removeAll()
+                }
+                self.mytableview.reloadData()
+            }
+        })
     }
     
     
