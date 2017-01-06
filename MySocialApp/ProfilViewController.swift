@@ -178,7 +178,6 @@ class ProfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
             self.profilImage.image = image
             self.saveImage()
-           // DataService.ds.REF_USER_CURRENT.child("profil-image").setValue(<#T##value: Any?##Any?#>)
         }else{
             print("Invalid image selected")
         }

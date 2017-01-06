@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var captionTxtField: FancyTextField!
     @IBOutlet weak var AddImage: CircleImageView!
@@ -27,6 +27,7 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.imagepicker = UIImagePickerController()
         self.imagepicker.allowsEditing = true // choose how to croped the image selected 
         self.imagepicker.delegate = self
+        self.captionTxtField.delegate = self
         
         print("view did load feed")
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
@@ -50,6 +51,16 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         })
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -90,8 +101,6 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     //picker image function
-    
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
@@ -170,7 +179,6 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 firebasePost.setValue(post)
                 let userpost : Dictionary<String, AnyObject> = ["id": uuistring as AnyObject]
                 DataService.ds.REF_USER_CURRENT.child("posts").child(uuistring).setValue(userpost)
-                
                 
                 self.captionTxtField.text = ""
                 self.imageSelected = false
