@@ -30,6 +30,28 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.captionTxtField.delegate = self
         
         print("view did load feed")
+       /* DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                if self.posts.count > 0 {
+                    self.posts.removeAll()
+                }
+                for snap in snapshots {
+                    print("SNAP: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(idKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            }
+            self.posts.sort(by: { (post, post2) -> Bool in
+                return post.datePublished.compare(post2.datePublished) == .orderedDescending
+            })
+            self.mytableview.reloadData()
+        })*/
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 if self.posts.count > 0 {
@@ -49,6 +71,7 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
             })
             self.mytableview.reloadData()
         })
+
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

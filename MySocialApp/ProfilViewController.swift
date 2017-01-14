@@ -112,6 +112,7 @@ class ProfilViewController: UIViewController, UIImagePickerControllerDelegate, U
                     print("edit snapshots done")
                     for snap in snapshots {
                         if let postdict = snap.value as? Dictionary<String, AnyObject> {
+                            print("post contain user is == \(postdict) \n-------\n")
                             if let id = postdict["id"] as? String {
                                 DataService.ds.REF_POSTS.child(id).child("username").setValue(username)
                                  print("edit username to post done")
@@ -164,6 +165,23 @@ class ProfilViewController: UIViewController, UIImagePickerControllerDelegate, U
                     let dlurl = metadata?.downloadURL()?.absoluteString
                     if let url = dlurl {
                         DataService.ds.REF_USER_CURRENT.child("profil-img").setValue(url)
+                        DispatchQueue.main.async {
+                            DataService.ds.REF_USER_CURRENT.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+                                if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                    print("edit snapshots done")
+                                    for snap in snapshots {
+                                        if let postdict = snap.value as? Dictionary<String, AnyObject> {
+                                            print("post contain user is == \(postdict) \n-------\n")
+                                            if let id = postdict["id"] as? String {
+                                                DataService.ds.REF_POSTS.child(id).child("user-img").setValue(url)
+                                                print("edit user image to post done")
+                                            }
+                                        }
+                                    }
+                                }
+                                print("end edit snapshots")
+                            })
+                        }
                     }
                     
                 }
