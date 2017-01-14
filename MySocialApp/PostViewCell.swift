@@ -52,6 +52,9 @@ class PostViewCell: UITableViewCell {
         self.caption.text = post.caption
         self.nbLikes.text = "\(post.nbLikes)"
         self.username.text = post.username
+        print("cell row init")
+        print("caption == \(post.caption) -- usernmae == \(post.username)")
+          print("cell row end init")
         if imguser != nil {
                 self.profilImage.image = imguser
         }else{

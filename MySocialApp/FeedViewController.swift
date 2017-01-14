@@ -155,7 +155,7 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
         DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
             print("snapshot == \(snapshot)")
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy MMM EEEE HH:mm"
+            dateFormatter.dateFormat = "yyyy MMM dd HH:mm"
             let date = Date()
             let mdate = dateFormatter.string(from: date)
             if let userData = snapshot.value as? Dictionary<String, AnyObject> {
@@ -180,12 +180,22 @@ class FeedViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 let userpost : Dictionary<String, AnyObject> = ["id": uuistring as AnyObject]
                 DataService.ds.REF_USER_CURRENT.child("posts").child(uuistring).setValue(userpost)
                 
+                let postaddtoarray = Post(idKey: uuistring, postData: post)
+                self.posts.append(postaddtoarray)
                 self.captionTxtField.text = ""
                 self.imageSelected = false
                 self.AddImage.image = UIImage(named: "add-image")
-                if self.posts.count > 0 {
+                /*if self.posts.count > 0 {
                     self.posts.removeAll()
+                }*/
+                print("before reload data post content")
+                self.posts.sort(by: { (post, post2) -> Bool in
+                    return post.datePublished.compare(post2.datePublished) == .orderedDescending
+                })
+                for elem in self.posts {
+                    print("caption == \(elem.caption) --- username == \(elem.username) ---- date == \(elem.datePublished)\n------\n")
                 }
+                
                 self.mytableview.reloadData()
             }
         })
